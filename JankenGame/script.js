@@ -1,10 +1,13 @@
 class Player {
 	//プレイヤー名
 	name;
+
 	//プレイヤーの出す手
 	hand;
+
 	//勝った回数
 	winCount;
+
 	//勝率
 	winPercentage;
 
@@ -15,7 +18,7 @@ class Player {
 		this.winPercentage = 0;
 	}
 
-	//グーチョキーパーをランダムに選んでくれる
+	//グー、チョキ、パーをランダムに選んでくれる
 	randomizeHand(){
 		this.hand = hands[Math.floor(Math.random() * 3)];
 	}
@@ -79,20 +82,16 @@ function startGame(){
 }
 
 function sumResult(heroHand, villanHand){
-	if(heroHand == "グー" && villanHand == "チョキ"){
+	if(heroHand === villanHand){
+		drawCount++;
+	}else if(heroHand == "グー" && villanHand == "チョキ"){
 		hero.winCount++;
-	} else if(heroHand == "グー" && villanHand == "パー"){
-		villan.winCount++;
 	} else if(heroHand == "チョキ" && villanHand == "パー"){
 		hero.winCount++;
-	} else if(heroHand == "チョキ" && villanHand == "グー"){
-		villan.winCount++;
 	} else if(heroHand == "パー" && villanHand == "グー"){
 		hero.winCount++;
-	} else if(heroHand == "パー" && villanHand == "チョキ"){
-		villan.winCount++;
 	}else{
-		drawCount++;
+		villan.winCount++;
 	}
 }
 
